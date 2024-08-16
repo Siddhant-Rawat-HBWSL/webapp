@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function middleware(req: NextRequest) {
+export async function middleware(req: NextRequest, res: NextResponse) {
     const currentUser = req.cookies.get('user')?.value;
     console.log('CURRENT USER: ',currentUser);
     if (currentUser) {

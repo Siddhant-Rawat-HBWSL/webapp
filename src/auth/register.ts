@@ -10,7 +10,7 @@ import { createSession } from "@/lib/session/manageSession";
 export default async function signUp(
   currentState: unknown,
   formData: FormData
-): Promise<{ token: string, user: { id: number, username: string } } | null | undefined> {
+): Promise<{ token: string, user: { id: number, username: string, email: string } } | null | undefined> {
     console.log(formData);
     try {
         const user = await registerUser(formData.get('email') as string, formData.get('username') as string, formData.get('password') as string);
@@ -22,7 +22,8 @@ export default async function signUp(
                     token,
                     user: {
                         id: user.id,
-                        username: user.username
+                        username: user.username,
+                        email: user.email
                     }
                 };
             }

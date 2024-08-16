@@ -5,5 +5,5 @@ class AuthError extends Error {
             this.type = type
         }
     }
-    
-    export default AuthError
+
+    export default AuthError;

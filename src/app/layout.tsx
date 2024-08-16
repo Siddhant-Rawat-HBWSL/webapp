@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import CheckAuth from "@/components/CheckAuth"; 
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* <CheckAuth /> */}
+        <Script src="https://www.google.com/recaptcha/api.js" strategy="lazyOnload"></Script>
         {children}
       </body>
     </html>

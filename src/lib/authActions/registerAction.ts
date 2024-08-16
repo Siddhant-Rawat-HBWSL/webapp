@@ -1,7 +1,8 @@
 'use server'
 import signUp from "@/auth/register";
-import AuthError from "@/types/errors/authError";
 import { cookies } from "next/headers";
+import AuthError from "@/types/errors/authError";
+import { validateCredentials } from "./validateCredentials";
 
 /**
  * Handles the registration of a new user.
@@ -10,7 +11,8 @@ import { cookies } from "next/headers";
  * @return {Promise<session|error message>} - A promise that resolves with the user's session if registration is successful, or an error message if registration fails.
  */
 export async function register(formData: FormData) {
-    try {
+  try {
+      // if(!validateCredentials(formData.get('username') as string, formData.get('password') as string)) throw new AuthError('Invalid credentials', 'CredentialsSignin');
       const session = await signUp('credentials', formData);
       if (session && session.token) {
         cookies().set('user', JSON.stringify(session.user), {
@@ -23,8 +25,6 @@ export async function register(formData: FormData) {
           secure: true,
           httpOnly: true
         });
-        console.log('user successfully logged in');
-        console.log(cookies().getAll());
         return session;
       }else{
         throw new AuthError('Invalid credentials', 'CredentialsSignin');
