@@ -18,16 +18,18 @@ export async function middleware(req: NextRequest, res: NextResponse) {
             if (req.nextUrl.pathname.startsWith('/login') || req.nextUrl.pathname.startsWith('/register')) {
                 return NextResponse.redirect(new URL('/', req.url));
             }
-        } else {
-            if (!(req.nextUrl.pathname.startsWith('/login') || req.nextUrl.pathname.startsWith('/register'))) {
-                return NextResponse.redirect(new URL('/login', req.url));
-            }
-        }
-    } else {
-        if (!(req.nextUrl.pathname.startsWith('/login') || req.nextUrl.pathname.startsWith('/register'))) {
-            return NextResponse.redirect(new URL('/login', req.url));
-        }
-    }
+        } 
+        // else {
+        //     if (!(req.nextUrl.pathname.startsWith('/login') || req.nextUrl.pathname.startsWith('/register'))) {
+        //         return NextResponse.redirect(new URL('/login', req.url));
+        //     }
+        // }
+    } 
+    // else {
+    //     if (!(req.nextUrl.pathname.startsWith('/login') || req.nextUrl.pathname.startsWith('/register'))) {
+    //         return NextResponse.redirect(new URL('/login', req.url));
+    //     }
+    // }
 }
 
 export const config = {
